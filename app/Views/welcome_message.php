@@ -1,331 +1,1357 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to CodeIgniter 4!</title>
-    <meta name="description" content="The small framework with powerful features">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico">
-
-    <!-- STYLES -->
-
-    <style {csp-style-nonce}>
-        * {
-            transition: background-color 300ms ease, color 300ms ease;
-        }
-        *:focus {
-            background-color: rgba(221, 72, 20, .2);
-            outline: none;
-        }
-        html, body {
-            color: rgba(33, 37, 41, 1);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-        header {
-            background-color: rgba(247, 248, 249, 1);
-            padding: .4rem 0 0;
-        }
-        .menu {
-            padding: .4rem 2rem;
-        }
-        header ul {
-            border-bottom: 1px solid rgba(242, 242, 242, 1);
-            list-style-type: none;
-            margin: 0;
-            overflow: hidden;
-            padding: 0;
-            text-align: right;
-        }
-        header li {
-            display: inline-block;
-        }
-        header li a {
-            border-radius: 5px;
-            color: rgba(0, 0, 0, .5);
-            display: block;
-            height: 44px;
-            text-decoration: none;
-        }
-        header li.menu-item a {
-            border-radius: 5px;
-            margin: 5px 0;
-            height: 38px;
-            line-height: 36px;
-            padding: .4rem .65rem;
-            text-align: center;
-        }
-        header li.menu-item a:hover,
-        header li.menu-item a:focus {
-            background-color: rgba(221, 72, 20, .2);
-            color: rgba(221, 72, 20, 1);
-        }
-        header .logo {
-            float: left;
-            height: 44px;
-            padding: .4rem .5rem;
-        }
-        header .menu-toggle {
-            display: none;
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        header .menu-toggle button {
-            background-color: rgba(221, 72, 20, .6);
-            border: none;
-            border-radius: 3px;
-            color: rgba(255, 255, 255, 1);
-            cursor: pointer;
-            font: inherit;
-            font-size: 1.3rem;
-            height: 36px;
-            padding: 0;
-            margin: 11px 0;
-            overflow: visible;
-            width: 40px;
-        }
-        header .menu-toggle button:hover,
-        header .menu-toggle button:focus {
-            background-color: rgba(221, 72, 20, .8);
-            color: rgba(255, 255, 255, .8);
-        }
-        header .heroe {
-            margin: 0 auto;
-            max-width: 1100px;
-            padding: 1rem 1.75rem 1.75rem 1.75rem;
-        }
-        header .heroe h1 {
-            font-size: 2.5rem;
-            font-weight: 500;
-        }
-        header .heroe h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-        }
-        section {
-            margin: 0 auto;
-            max-width: 1100px;
-            padding: 2.5rem 1.75rem 3.5rem 1.75rem;
-        }
-        section h1 {
-            margin-bottom: 2.5rem;
-        }
-        section h2 {
-            font-size: 120%;
-            line-height: 2.5rem;
-            padding-top: 1.5rem;
-        }
-        section pre {
-            background-color: rgba(247, 248, 249, 1);
-            border: 1px solid rgba(242, 242, 242, 1);
-            display: block;
-            font-size: .9rem;
-            margin: 2rem 0;
-            padding: 1rem 1.5rem;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-        section code {
-            display: block;
-        }
-        section a {
-            color: rgba(221, 72, 20, 1);
-        }
-        section svg {
-            margin-bottom: -5px;
-            margin-right: 5px;
-            width: 25px;
-        }
-        .further {
-            background-color: rgba(247, 248, 249, 1);
-            border-bottom: 1px solid rgba(242, 242, 242, 1);
-            border-top: 1px solid rgba(242, 242, 242, 1);
-        }
-        .further h2:first-of-type {
-            padding-top: 0;
-        }
-        .svg-stroke {
-            fill: none;
-            stroke: #000;
-            stroke-width: 32px;
-        }
-        footer {
-            background-color: rgba(221, 72, 20, .8);
-            text-align: center;
-        }
-        footer .environment {
-            color: rgba(255, 255, 255, 1);
-            padding: 2rem 1.75rem;
-        }
-        footer .copyrights {
-            background-color: rgba(62, 62, 62, 1);
-            color: rgba(200, 200, 200, 1);
-            padding: .25rem 1.75rem;
-        }
-        @media (max-width: 629px) {
-            header ul {
-                padding: 0;
-            }
-            header .menu-toggle {
-                padding: 0 1rem;
-            }
-            header .menu-item {
-                background-color: rgba(244, 245, 246, 1);
-                border-top: 1px solid rgba(242, 242, 242, 1);
-                margin: 0 15px;
-                width: calc(100% - 30px);
-            }
-            header .menu-toggle {
-                display: block;
-            }
-            header .hidden {
-                display: none;
-            }
-            header li.menu-item a {
-                background-color: rgba(221, 72, 20, .1);
-            }
-            header li.menu-item a:hover,
-            header li.menu-item a:focus {
-                background-color: rgba(221, 72, 20, .7);
-                color: rgba(255, 255, 255, .8);
-            }
-        }
-    </style>
-</head>
-<body>
-
-<!-- HEADER: MENU + HEROE SECTION -->
-<header>
-
-    <div class="menu">
-        <ul>
-            <li class="logo">
-                <a href="https://codeigniter.com" target="_blank">
-                    <svg role="img" aria-label="Visit CodeIgniter.com official website!" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2100 500" height="44"><path fill="#dd4814" d="M148.2 411c-20.53-9.07-34.48-28.61-36.31-50.99 1.2-23.02 13.36-44.06 32.67-56.61-3.17 7.73-2.4 16.53 2 23.6 5.01 7 13.63 10.36 22.07 8.61 12.02-3.38 19.06-15.86 15.68-27.89-1.2-4.21-3.6-8.03-6.88-10.91-13.6-11.06-20.43-28.44-18-45.81 2.33-9.2 7.42-17.52 14.61-23.8-5.4 14.4 9.83 28.61 20.05 35.6 18.14 10.88 35.6 22.84 52.32 35.81 18.27 14.4 28.23 36.94 26.67 60-4.11 24.54-21.47 44.8-45.13 52.4 47.33-10.53 96.13-48.13 97.06-101.46-.93-42.67-26.4-80.96-65.33-98.4h-1.73c.86 2.09 1.28 4.34 1.2 6.61.13-1.47.13-2.93 0-4.4.21 1.73.21 3.47 0 5.2-2.96 12.13-15.2 19.6-27.36 16.64-4.86-1.2-9.2-3.93-12.32-7.87-15.6-20 0-42.76 2.61-64.76 1.6-28.13-11.25-55.02-34.05-71.46 11.41 19.02-3.79 44-14.84 58.21-11.07 14.21-27.07 24.8-40.11 37.2-14.05 13.07-26.93 27.44-38.49 42.8-24.99 30.53-34.8 70.8-26.67 109.4 11.15 37.2 42.07 65.15 80.2 72.4h.21l-.13-.12Zm324.56-159.8q0-17.92 6.16-35.56 6.44-17.92 18.48-31.92t29.68-22.68q17.64-8.96 40.04-8.96 26.6 0 45.36 12.04 19.04 12.04 28 31.36l-15.4 9.52q-4.76-9.8-11.76-16.52-6.72-6.72-14.56-10.92-7.84-4.2-16.24-5.88-8.4-1.96-16.52-1.96-17.92 0-31.64 7.28-13.72 7.28-23.24 19.04-9.24 11.76-14 26.6-4.76 14.56-4.76 29.68 0 16.52 5.6 31.64 5.88 15.12 15.68 26.88 10.08 11.48 23.52 18.48 13.72 6.72 29.68 6.72 8.4 0 17.08-1.96 8.96-2.24 17.08-6.72 8.4-4.76 15.4-11.48 7-7 11.76-16.8l16.24 8.4q-4.76 11.2-13.44 19.88-8.68 8.4-19.32 14.28-10.64 5.88-22.68 8.96-11.76 3.08-23.24 3.08-20.44 0-37.52-8.96-17.08-8.96-29.4-23.24-12.32-14.56-19.32-32.76-6.72-18.48-6.72-37.52Zm263.48 103.6q-15.96 0-29.12-5.88-13.16-6.16-22.96-16.52-9.52-10.36-14.84-24.08Q664 294.6 664 279.48q0-15.4 5.32-29.12 5.6-13.72 15.12-24.08 9.8-10.36 22.96-16.52t28.84-6.16q15.68 0 28.84 6.16 13.44 6.16 22.96 16.52 9.8 10.36 15.12 24.08 5.6 13.72 5.6 29.12 0 15.12-5.32 28.84t-15.12 24.08q-9.52 10.36-22.96 16.52-13.16 5.88-29.12 5.88Zm-52.92-75.04q0 12.32 4.2 22.96 4.2 10.36 11.2 18.48 7.28 7.84 16.8 12.32 9.8 4.48 20.72 4.48 10.92 0 20.44-4.48 9.8-4.76 17.08-12.6 7.28-8.12 11.48-18.76 4.2-10.64 4.2-22.96 0-12.04-4.2-22.68-4.2-10.92-11.48-18.76-7.28-8.12-17.08-12.6-9.52-4.76-20.44-4.76-10.92 0-20.44 4.76-9.52 4.48-16.8 12.6-7.28 8.12-11.48 19.04-4.2 10.64-4.2 22.96ZM900.6 354.8q-15.12 0-28-6.16-12.88-6.44-22.12-16.8t-14.56-23.8q-5.04-13.72-5.04-28.56 0-15.4 5.04-29.12 5.04-14 13.72-24.36 8.96-10.36 21-16.24 12.32-6.16 26.88-6.16 18.48 0 32.76 9.8 14.28 9.52 22.4 23.24V147.6h19.04v179.76q0 7.84 6.72 7.84V352q-4.2.84-6.72.84-6.72 0-11.76-4.2-5.04-4.48-5.04-10.64v-14.28Q946.24 338 931.4 346.4t-30.8 8.4Zm4.2-16.8q7 0 14.84-2.8 8.12-2.8 15.12-7.56 7-5.04 11.76-11.48 5.04-6.72 6.16-14.28V256.8q-2.8-7.56-8.12-14-5.32-6.72-12.32-11.76-6.72-5.04-14.56-7.84-7.84-2.8-15.4-2.8-11.76 0-21.28 5.04-9.52 5.04-16.52 13.44-6.72 8.12-10.36 18.76-3.64 10.64-3.64 21.84 0 11.76 4.2 22.4 4.2 10.64 11.48 18.76 7.28 7.84 17.08 12.6Q893.32 338 904.8 338Zm173.04 16.8q-15.96 0-29.4-5.88-13.16-6.16-22.96-16.52-9.8-10.64-15.4-24.36-5.32-13.72-5.32-29.4 0-15.4 5.32-28.84 5.6-13.72 15.12-23.8 9.8-10.36 23.24-16.24 13.44-6.16 29.12-6.16 15.96 0 29.12 6.16 13.44 5.88 22.96 16.24 9.52 10.36 14.84 23.8 5.32 13.44 5.32 28.56v4.48q0 2.24-.28 3.08h-124.88q.84 11.76 5.32 21.84 4.76 9.8 12.04 17.08 7.28 7.28 16.52 11.48 9.52 3.92 20.16 3.92 7 0 14-1.96t12.88-5.32q5.88-3.36 10.64-8.12 4.76-5.04 7.28-10.92l16.52 4.48q-3.36 8.12-9.52 14.84-6.16 6.44-14.28 11.48-8.12 4.76-17.92 7.56-9.8 2.52-20.44 2.52Zm-53.48-83.44h107.24q-.84-11.76-5.6-21.28-4.48-9.8-11.76-16.8-7-7-16.52-10.92-9.24-3.92-19.88-3.92-10.64 0-20.16 3.92t-16.8 10.92q-7 7-11.48 16.8-4.2 9.8-5.04 21.28Zm193.2 80.64h-38.64V153.2h38.64V352Zm93.52.84q-14.84 0-26.88-5.88t-21-15.96q-8.68-10.36-13.44-23.8-4.76-13.44-4.76-28.56 0-15.96 5.04-29.68 5.04-13.72 14-24.08 8.96-10.36 21.56-16.24 12.6-5.88 27.72-5.88 17.08 0 29.96 7.84 12.88 7.56 21.28 20.44v-25.76h32.76V345q0 16.24-6.16 29.12-6.16 12.88-17.08 21.84-10.64 8.96-25.76 13.72-14.84 4.76-32.48 4.76-24.08 0-40.6-7.84-16.24-8.12-28-22.68l20.44-19.88q8.4 10.36 21 16.24 12.88 5.88 27.16 5.88 8.68 0 16.52-2.24 8.12-2.52 14.28-7.56 6.16-5.04 9.52-12.88 3.64-7.84 3.64-18.48v-18.48q-7.28 12.6-20.44 19.6-13.16 6.72-28.28 6.72Zm12.6-29.96q6.16 0 11.76-1.96t10.36-5.32q4.76-3.36 8.4-7.84 3.64-4.48 5.6-9.52v-35q-5.04-12.88-15.96-20.72-10.64-7.84-22.4-7.84-8.68 0-15.68 3.92-7 3.64-12.04 10.08-5.04 6.16-7.84 14.28-2.52 8.12-2.52 16.8 0 8.96 3.08 16.8t8.4 13.72q5.6 5.88 12.88 9.24 7.28 3.36 15.96 3.36Zm243.88-62.44V352h-37.52v-82.32q0-17.64-6.16-25.76-6.16-8.12-17.08-8.12-5.6 0-11.48 2.24-5.88 2.24-11.2 6.44-5.04 3.92-9.24 9.52t-6.16 12.32V352h-37.52V205.28h33.88v27.16q8.12-14 23.52-21.84t34.72-7.84q13.72 0 22.4 5.04 8.68 5.04 13.44 13.16 4.76 8.12 6.44 18.48 1.96 10.36 1.96 21Zm70.28 91.56h-37.52V205.28h37.52V352Zm0-167.16h-37.52V147.6h37.52v37.24Zm114.24 129.92 7.56 29.68q-7.56 3.36-18.48 6.72-10.92 3.36-22.96 3.36-7.84 0-14.84-1.96-6.72-1.96-12.04-6.16-5.04-4.48-8.12-11.2-3.08-7-3.08-16.8v-84.28h-19.32v-28.84h19.32v-47.6h37.52v47.6h30.8v28.84h-30.8v71.68q0 7.84 3.92 11.2 4.2 3.08 10.08 3.08t11.48-1.96q5.6-1.96 8.96-3.36Zm91.56 40.04q-17.64 0-31.92-5.88-14.28-6.16-24.36-16.52t-15.68-24.08q-5.32-13.72-5.32-28.84 0-15.68 5.32-29.4 5.32-14 15.4-24.36 10.08-10.64 24.36-16.8 14.56-6.16 32.48-6.16 17.92 0 31.92 6.16 14.28 6.16 24.08 16.52 10.08 10.36 15.12 24.08 5.32 13.72 5.32 28.56 0 3.64-.28 7 0 3.36-.56 5.6h-113.4q.84 8.68 4.2 15.4 3.36 6.72 8.68 11.48 5.32 4.76 12.04 7.28 6.72 2.52 14 2.52 11.2 0 21-5.32 10.08-5.6 13.72-14.56l32.2 8.96q-8.12 16.8-26.04 27.72-17.64 10.64-42.28 10.64Zm-38.08-88.48h76.16q-1.4-16.52-12.32-26.32-10.64-10.08-26.04-10.08-7.56 0-14.28 2.8-6.44 2.52-11.48 7.28t-8.4 11.48q-3.08 6.72-3.64 14.84Zm225.12-62.72v34.16q-17.08.28-30.52 6.72-13.44 6.16-19.32 18.76V352h-37.52V205.28h34.44v31.36q3.92-7.56 9.24-13.44 5.32-6.16 11.48-10.64t12.32-6.72q6.44-2.52 12.32-2.52h4.48q1.68 0 3.08.28Z"/></svg>
-                </a>
-            </li>
-            <li class="menu-toggle">
-                <button id="menuToggle">&#9776;</button>
-            </li>
-            <li class="menu-item hidden"><a href="#">Home</a></li>
-            <li class="menu-item hidden"><a href="https://codeigniter.com/user_guide/" target="_blank">Docs</a>
-            </li>
-            <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Community</a></li>
-            <li class="menu-item hidden"><a
-                    href="https://codeigniter.com/contribute" target="_blank">Contribute</a>
-            </li>
-        </ul>
+<?php
+$this->extend('layout/layout') ?>
+<?php $this->section('title') ?>
+chat App
+<?php $this->endSection() ?>
+<?php $this->section('SliderPanel') ?>
+<!-- Sidebar Panel Header -->
+<div class="flex h-18 w-full items-center justify-between pl-4 pr-1">
+    <div class="flex items-center">
+        <div class="avatar mr-3 hidden h-9 w-9 lg:flex">
+            <div class="is-initial rounded-full bg-primary/10 text-primary dark:bg-accent-light/10 dark:text-accent-light">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+            </div>
+        </div>
+        <p class="line-clamp-1 text-lg font-medium tracking-wider text-slate-800 dark:text-navy-100">
+            Chat
+        </p>
     </div>
 
-    <div class="heroe">
-
-        <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
-
-        <h2>The small framework with powerful features</h2>
-
-    </div>
-
-</header>
-
-<!-- CONTENT -->
-
-<section>
-
-    <h1>About this page</h1>
-
-    <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-    <p>If you would like to edit this page you will find it located at:</p>
-
-    <pre><code>app/Views/welcome_message.php</code></pre>
-
-    <p>The corresponding controller for this page can be found at:</p>
-
-    <pre><code>app/Controllers/Home.php</code></pre>
-
-</section>
-
-<div class="further">
-
-    <section>
-
-        <h1>Go further</h1>
-
-        <h2>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect x='32' y='96' width='64' height='368' rx='16' ry='16' class="svg-stroke" /><line x1='112' y1='224' x2='240' y2='224' class="svg-stroke" /><line x1='112' y1='400' x2='240' y2='400' class="svg-stroke" /><rect x='112' y='160' width='128' height='304' rx='16' ry='16' class="svg-stroke" /><rect x='256' y='48' width='96' height='416' rx='16' ry='16' class="svg-stroke" /><path d='M422.46,96.11l-40.4,4.25c-11.12,1.17-19.18,11.57-17.93,23.1l34.92,321.59c1.26,11.53,11.37,20,22.49,18.84l40.4-4.25c11.12-1.17,19.18-11.57,17.93-23.1L445,115C443.69,103.42,433.58,94.94,422.46,96.11Z' class="svg-stroke"/></svg>
-            Learn
-        </h2>
-
-        <p>The User Guide contains an introduction, tutorial, a number of "how to"
-            guides, and then reference documentation for the components that make up
-            the framework. Check the <a href="https://codeigniter.com/user_guide/"
-            target="_blank">User Guide</a> !</p>
-
-        <h2>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M431,320.6c-1-3.6,1.2-8.6,3.3-12.2a33.68,33.68,0,0,1,2.1-3.1A162,162,0,0,0,464,215c.3-92.2-77.5-167-173.7-167C206.4,48,136.4,105.1,120,180.9a160.7,160.7,0,0,0-3.7,34.2c0,92.3,74.8,169.1,171,169.1,15.3,0,35.9-4.6,47.2-7.7s22.5-7.2,25.4-8.3a26.44,26.44,0,0,1,9.3-1.7,26,26,0,0,1,10.1,2L436,388.6a13.52,13.52,0,0,0,3.9,1,8,8,0,0,0,8-8,12.85,12.85,0,0,0-.5-2.7Z' class="svg-stroke" /><path d='M66.46,232a146.23,146.23,0,0,0,6.39,152.67c2.31,3.49,3.61,6.19,3.21,8s-11.93,61.87-11.93,61.87a8,8,0,0,0,2.71,7.68A8.17,8.17,0,0,0,72,464a7.26,7.26,0,0,0,2.91-.6l56.21-22a15.7,15.7,0,0,1,12,.2c18.94,7.38,39.88,12,60.83,12A159.21,159.21,0,0,0,284,432.11' class="svg-stroke" /></svg>
-            Discuss
-        </h2>
-
-        <p>CodeIgniter is a community-developed open source project, with several
-             venues for the community members to gather and exchange ideas. View all
-             the threads on <a href="https://forum.codeigniter.com/"
-             target="_blank">CodeIgniter's forum</a>, or <a href="https://join.slack.com/t/codeigniterchat/shared_invite/zt-rl30zw00-obL1Hr1q1ATvkzVkFp8S0Q"
-             target="_blank">chat on Slack</a> !</p>
-
-        <h2>
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><line x1='176' y1='48' x2='336' y2='48' class="svg-stroke" /><line x1='118' y1='304' x2='394' y2='304' class="svg-stroke" /><path d='M208,48v93.48a64.09,64.09,0,0,1-9.88,34.18L73.21,373.49C48.4,412.78,76.63,464,123.08,464H388.92c46.45,0,74.68-51.22,49.87-90.51L313.87,175.66A64.09,64.09,0,0,1,304,141.48V48' class="svg-stroke" /></svg>
-             Contribute
-        </h2>
-
-        <p>CodeIgniter is a community driven project and accepts contributions
-             of code and documentation from the community. Why not
-             <a href="https://codeigniter.com/contribute" target="_blank">
-             join us</a> ?</p>
-
-    </section>
-
+    <button @click="$store.global.isSidebarExpanded = false" class="btn h-7 w-7 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent-light/80 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 xl:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
 </div>
 
-<!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
-
-<footer>
-    <div class="environment">
-
-        <p>Page rendered in {elapsed_time} seconds using {memory_usage} MB of memory.</p>
-
-        <p>Environment: <?= ENVIRONMENT ?></p>
-
+<!-- Sidebar Panel Body -->
+<div class="flex h-[calc(100%-4.5rem)] grow flex-col">
+    <div>
+        <div class="flex items-center justify-between px-4">
+            <span class="text-xs+ font-medium uppercase">History</span>
+            <div class="-mr-1.5 flex">
+                <button class="btn h-6 w-6 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="swiper px-4" x-init="$nextTick(()=>$el._x_swiper= new Swiper($el,{  slidesPerView: 'auto', spaceBetween:10, slidesPerGroup:3}))">
+            <div class="swiper-wrapper mt-1">
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-2.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Konnor
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-4.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Travis
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-19.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Fuller
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-18.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Alfredo
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-14.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Elliott
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-13.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Derrick
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-12.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Simmons
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-11.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Katrina
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-10.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Henry
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-9.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Curtis
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-8.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Bradley
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-7.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Samantha
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-6.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Corey
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-5.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Lance
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-4.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Tucker
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-3.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Jensen
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-2.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Perkins
+                    </p>
+                </div>
+                <div class="swiper-slide flex w-11 shrink-0 flex-col items-center justify-center">
+                    <div class="h-11 w-11 rounded-full bg-gradient-to-r from-purple-500 to-orange-600 p-0.5">
+                        <img class="h-full w-full rounded-full border-2 border-white object-cover dark:border-slate-700" src="images/app/avatar-1.jpg" alt="avatar" />
+                    </div>
+                    <p class="mt-1 line-clamp-1 w-14 break-words text-center text-xs text-slate-600 dark:text-navy-100">
+                        Evans
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="copyrights">
+    <div class="mt-4 flex px-4">
+        <label class="relative mr-1.5 flex">
+            <input class="form-input peer h-8 w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 text-xs+ ring-primary/50 placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900" placeholder="Search chats" type="text" />
+            <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3.316 13.781l.73-.171-.73.171zm0-5.457l.73.171-.73-.171zm15.473 0l.73-.171-.73.171zm0 5.457l.73.171-.73-.171zm-5.008 5.008l-.171-.73.171.73zm-5.457 0l-.171.73.171-.73zm0-15.473l-.171-.73.171.73zm5.457 0l.171-.73-.171.73zM20.47 21.53a.75.75 0 101.06-1.06l-1.06 1.06zM4.046 13.61a11.198 11.198 0 010-5.115l-1.46-.342a12.698 12.698 0 000 5.8l1.46-.343zm14.013-5.115a11.196 11.196 0 010 5.115l1.46.342a12.698 12.698 0 000-5.8l-1.46.343zm-4.45 9.564a11.196 11.196 0 01-5.114 0l-.342 1.46c1.907.448 3.892.448 5.8 0l-.343-1.46zM8.496 4.046a11.198 11.198 0 015.115 0l.342-1.46a12.698 12.698 0 00-5.8 0l.343 1.46zm0 14.013a5.97 5.97 0 01-4.45-4.45l-1.46.343a7.47 7.47 0 005.568 5.568l.342-1.46zm5.457 1.46a7.47 7.47 0 005.568-5.567l-1.46-.342a5.97 5.97 0 01-4.45 4.45l.342 1.46zM13.61 4.046a5.97 5.97 0 014.45 4.45l1.46-.343a7.47 7.47 0 00-5.568-5.567l-.342 1.46zm-5.457-1.46a7.47 7.47 0 00-5.567 5.567l1.46.342a5.97 5.97 0 014.45-4.45l-.343-1.46zm8.652 15.28l3.665 3.664 1.06-1.06-3.665-3.665-1.06 1.06z" />
+                </svg>
+            </span>
+        </label>
 
-        <p>&copy; <?= date('Y') ?> CodeIgniter Foundation. CodeIgniter is open source project released under the MIT
-            open source licence.</p>
-
+        <button class="btn -mr-2 h-8 w-8 shrink-0 rounded-full p-0 text-slate-500 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M22 6.5h-9.5M6 6.5H2M9 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM22 17.5h-6M9.5 17.5H2M13 20a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" />
+            </svg>
+        </button>
     </div>
 
-</footer>
+    <div class="is-scrollbar-hidden mt-3 flex grow flex-col overflow-y-auto">
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-1.jpg',name:'Alfredo Elliott'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-1.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Alfredo Elliott
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">11:03</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        😂 Lorem ipsum dolor
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-slate-200 px-1.5 text-tiny+ font-medium leading-none text-slate-800 dark:bg-navy-450 dark:text-white">
+                        5
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-3.jpg',name:'Konnor Guzman'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-3.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Konnor Guzman
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">09:16</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        💣 Adipisicing elit. Prov ident?
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-4.jpg',name:'Travis Fuller'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-4.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+                </div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Travis Fuller
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">08:05</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Dolor set. Prov ident?
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-primary px-1.5 text-tiny+ font-medium leading-none text-white dark:bg-accent">
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-5.jpg',name:'Derrick Simmons'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-5.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Derrick Simmons
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">06:21</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        And that’s why a 15th century
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-slate-200 px-1.5 text-tiny+ font-medium leading-none text-slate-800 dark:bg-navy-450 dark:text-white">
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-6.jpg',name:'Katrina West'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-6.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Katrina West
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">06:21</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        he wanted people to focus
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-7.jpg',name:'Corey Evans'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-7.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Corey Evans
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Ut enim ad minim veniam
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-8.jpg',name:'Anthony Jensen'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-8.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Anthony Jensen
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Excepteur sint occaecat cupidatat
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-9.jpg',name:'Lance Tucker'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-9.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Lance Tucker
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Duis aute irure dolor in
+                    </p>
+                </div>
+            </div>
+        </div>
 
-<!-- SCRIPTS -->
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-10.jpg',name:'Alfredo Elliott'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-10.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Alfredo Elliott
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">11:03</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        😂 Lorem ipsum dolor
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-slate-200 px-1.5 text-tiny+ font-medium leading-none text-slate-800 dark:bg-navy-450 dark:text-white">
+                        5
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-10.jpg',name:'Konnor Guzman'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-10.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Konnor Guzman
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">09:16</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        💣 Adipisicing elit. Prov ident?
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-11.jpg',name:'Travis Fuller'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-11.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+                </div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Travis Fuller
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">08:05</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Dolor set. Prov ident?
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-primary px-1.5 text-tiny+ font-medium leading-none text-white dark:bg-accent">
+                        4
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-12.jpg',name:'Derrick Simmons'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Derrick Simmons
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">06:21</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        And that’s why a 15th century
+                    </p>
+                    <div class="flex h-4.5 min-w-[1.125rem] items-center justify-center rounded-full bg-slate-200 px-1.5 text-tiny+ font-medium leading-none text-slate-800 dark:bg-navy-450 dark:text-white">
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-13.jpg',name:'Katrina West'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-13.jpg" alt="avatar" />
+                <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Katrina West
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">06:21</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        he wanted people to focus
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-14.jpg',name:'Corey Evans'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-14.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Corey Evans
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Ut enim ad minim veniam
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-18.jpg',name:'Anthony Jensen'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-18.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Anthony Jensen
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Excepteur sint occaecat cupidatat
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-19.jpg',name:'Lance Tucker'})" class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
+            <div class="avatar h-10 w-10">
+                <img class="rounded-full" src="images/app/avatar-19.jpg" alt="avatar" />
+            </div>
+            <div class="flex flex-1 flex-col">
+                <div class="flex items-baseline justify-between space-x-1.5">
+                    <p class="line-clamp-1 text-xs+ font-medium text-slate-700 dark:text-navy-100">
+                        Lance Tucker
+                    </p>
+                    <span class="text-tiny+ text-slate-400 dark:text-navy-300">Tue</span>
+                </div>
+                <div class="mt-1 flex items-center justify-between space-x-1">
+                    <p class="line-clamp-1 text-xs+ text-slate-400 dark:text-navy-300">
+                        Duis aute irure dolor in
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script {csp-script-nonce}>
-    document.getElementById("menuToggle").addEventListener('click', toggleMenu);
-    function toggleMenu() {
-        var menuItems = document.getElementsByClassName('menu-item');
-        for (var i = 0; i < menuItems.length; i++) {
-            var menuItem = menuItems[i];
-            menuItem.classList.toggle("hidden");
-        }
-    }
-</script>
+    <div class="flex h-12 shrink-0 justify-between border-t border-slate-150 px-1.5 py-1 dark:border-navy-600">
+        <a href="#" x-tooltip="'All Chats'" class="btn h-9 w-9 rounded-full p-0 text-primary hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-accent dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+            </svg>
+        </a>
+        <a href="#" x-tooltip="'Users'" class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </a>
 
-<!-- -->
+        <a href="#" x-tooltip="'Groups'" class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        </a>
+        <a href="#" x-tooltip="'Channels'" class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+            </svg>
+        </a>
 
-</body>
-</html>
+        <a href="#" x-tooltip="'More'" class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+            </svg>
+        </a>
+    </div>
+</div>
+<?php $this->endSection() ?>
+<?php $this->section('MiniSliderPanel') ?>
+<div class="flex h-18 shrink-0 items-center justify-center">
+    <div class="avatar flex h-10 w-10">
+        <div class="is-initial is-initial rounded-full bg-primary/10 text-primary dark:bg-accent-light/10 dark:text-accent-light">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="flex h-[calc(100%-4.5rem)] grow flex-col">
+    <div class="is-scrollbar-hidden flex grow flex-col overflow-y-auto">
+        <ul class="mt-2 flex flex-col items-center justify-center space-y-1">
+            <li>
+                <a href="#" class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="btn h-10 w-10 p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </a>
+            </li>
+        </ul>
+        <div class="mx-4 my-4 h-px shrink-0 bg-slate-200 dark:bg-navy-500"></div>
+        <div class="flex flex-col">
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-1.jpg',name:'Alfredo Elliott'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-1.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-2.jpg',name:'Konnor Guzman'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-2.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-3.jpg',name:'Travis Fuller'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-3.jpg" alt="avatar" />
+
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+                    </div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-4.jpg',name:'Derrick Simmons'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-4.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-5.jpg',name:'Katrina West'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-5.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-6.jpg',name:'Corey Evans'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-6.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-7.jpg',name:'Anthony Jensen'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-7.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-8.jpg',name:'Lance Tucker'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-8.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-9.jpg',name:'Alfredo Elliott'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-9.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-10.jpg',name:'Konnor Guzman'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-10.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-11.jpg',name:'Travis Fuller'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-11.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-primary dark:border-navy-700 dark:bg-accent">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-80 dark:bg-accent"></span>
+                    </div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-12.jpg',name:'Derrick Simmons'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-13.jpg',name:'Katrina West'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-13.jpg" alt="avatar" />
+                    <div class="absolute right-0 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-navy-700"></div>
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-3',avatar_url:'images/app/avatar-1.jpg',name:'Corey Evans'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-1.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-1',avatar_url:'images/app/avatar-18.jpg',name:'Anthony Jensen'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-18.jpg" alt="avatar" />
+                </div>
+            </div>
+            <div @click="$dispatch('change-active-chat',{chatId:'chat-2',avatar_url:'images/app/avatar-19.jpg',name:'Lance Tucker'})" class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
+                <div class="avatar h-10 w-10">
+                    <img class="rounded-full" src="images/app/avatar-19.jpg" alt="avatar" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center justify-center py-3">
+        <div x-data="usePopper({placement:'right-start',offset:4})" @click.outside="isShowPopper && (isShowPopper = false)" class="inline-flex">
+            <button x-ref="popperRef" @click="isShowPopper = !isShowPopper" class="btn h-10 w-10 rounded-full border border-slate-200 p-0 font-medium hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-500 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                </svg>
+            </button>
+
+            <template x-teleport="#x-teleport-target">
+                <div x-ref="popperRoot" class="popper-root" :class="isShowPopper && 'show'">
+                    <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                        <ul>
+                            <li>
+                                <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Action</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Another Action</a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Something else</a>
+                            </li>
+                        </ul>
+                        <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
+                        <ul>
+                            <li>
+                                <a href="#" class="flex h-8 items-center px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">Separated Link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
+<?php $this->endSection() ?>
+<?php $this->section('content') ?>
+<div class="chat-header relative z-10 flex h-[61px] w-full shrink-0 items-center justify-between border-b border-slate-150 bg-white px-[calc(var(--margin-x)-.5rem)] shadow-sm transition-[padding,width] duration-[.25s] dark:border-navy-700 dark:bg-navy-800">
+    <div class="flex items-center space-x-5">
+        <div class="ml-1 h-7 w-7">
+            <button class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80" :class="$store.global.isSidebarExpanded && 'active'" @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div @click="isShowChatInfo = true" class="flex cursor-pointer items-center space-x-4 font-inter">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+            <div>
+                <p class="line-clamp-1 font-medium text-slate-700 dark:text-navy-100" x-text="activeChat.name"></p>
+                <p class="mt-0.5 text-xs">Last seen recently</p>
+            </div>
+        </div>
+    </div>
+    <div class="-mr-1 flex items-center">
+        <button class="btn hidden h-9 w-9 rounded-full p-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:flex">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+        </button>
+        <button class="btn h-9 w-9 rounded-full p-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
+        <button @click="isShowChatInfo = !isShowChatInfo" :class="isShowChatInfo ? 'text-primary dark:text-accent-light' : 'text-slate-500 dark:text-navy-200'" class="btn hidden h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:flex">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.25 21.167h5.5c4.584 0 6.417-1.834 6.417-6.417v-5.5c0-4.583-1.834-6.417-6.417-6.417h-5.5c-4.583 0-6.417 1.834-6.417 6.417v5.5c0 4.583 1.834 6.417 6.417 6.417ZM13.834 2.833v18.334" />
+            </svg>
+        </button>
+        <div x-data="usePopper({placement:'bottom-end',offset:4})" @click.outside="isShowPopper && (isShowPopper = false)" class="inline-flex">
+            <button x-ref="popperRef" @click="isShowPopper = !isShowPopper" class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                </svg>
+            </button>
+
+            <div x-ref="popperRoot" class="popper-root" :class="isShowPopper && 'show'">
+                <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter dark:border-navy-500 dark:bg-navy-700">
+                    <ul>
+                        <li>
+                            <a href="#" class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mt-px h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                </svg>
+                                <span>Unmute</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mt-px h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span>Chat Setting</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mt-px h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                </svg>
+                                <span>Block User</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide text-error outline-none transition-all hover:bg-error/20 focus:bg-error/20">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <span> Delete chat</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div :class="$store.breakpoints.smAndUp && 'scrollbar-sm'" class="grow overflow-y-auto px-[calc(var(--margin-x)-.5rem)] py-5 transition-all duration-[.25s]">
+    <div x-show="activeChat.chatId === 'chat-1'" x-transition:enter="transition-all duration-500 easy-in-out" x-transition:enter-start="opacity-0 [transform:translate3d(0,1rem,0)]" x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]" class="space-y-5">
+        <div class="mx-4 flex items-center space-x-3">
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            <p>Sunday</p>
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Hello My Dear. Lorem ipsum dolor sit amet, consectetur.
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Assumenda necessitatibus, ratione. Voluptatum.
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        And that’s why a 15th century
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Eius.
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="grid grid-cols-12 gap-2">
+                        <div class="group relative col-span-12 sm:col-span-4">
+                            <img class="h-full rounded-lg object-cover" src="images/object/object-1.jpg" alt="image" />
+                            <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 grid grid-cols-2 gap-2 sm:col-span-8">
+                            <div class="group relative">
+                                <img class="h-full rounded-lg object-cover" src="images/object/object-2.jpg" alt="image" />
+                                <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="group relative">
+                                <img class="h-full rounded-lg object-cover" src="images/object/object-3.jpg" alt="image" />
+                                <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="group relative">
+                                <img class="h-full rounded-lg object-cover" src="images/object/object-5.jpg" alt="image" />
+                                <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="group relative">
+                                <img class="h-full rounded-lg object-cover" src="images/object/object-7.jpg" alt="image" />
+                                <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                                    <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:21
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-4 flex items-center space-x-3">
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            <p>Monday</p>
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="group relative">
+                        <img class="h-48 rounded-lg object-cover" src="images/object/food-4.jpg" alt="image" />
+                        <div class="absolute top-0 flex h-full w-full items-center justify-center rounded-lg bg-black/30 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                            <button class="btn h-9 w-9 rounded-full bg-info p-0 font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Please Download This File
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+    </div>
+    <div x-show="activeChat.chatId === 'chat-2'" x-transition:enter="transition-all duration-500 easy-in-out" x-transition:enter-start="opacity-0 [transform:translate3d(0,1rem,0)]" x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]" class="space-y-5">
+        <div class="mx-4 flex items-center space-x-3">
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            <p>Yesterday</p>
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Hello My Dear. Lorem ipsum dolor sit amet, consectetur.
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Assumenda necessitatibus, ratione. Voluptatum.
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        And that’s why a 15th century
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+    </div>
+    <div x-show="activeChat.chatId === 'chat-3'" x-transition:enter="transition-all duration-500 easy-in-out" x-transition:enter-start="opacity-0 [transform:translate3d(0,1rem,0)]" x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]" class="space-y-5">
+        <div class="mx-4 flex items-center space-x-3">
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            <p>Sunday</p>
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Hello My Dear. Lorem ipsum dolor sit amet, consectetur.
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Assumenda necessitatibus, ratione. Voluptatum.
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        And that’s why a 15th century
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Ei eum populo dictas, ad sed tempor minimum voluptatibus,
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        No mei stet periculis consequat, agam nostro
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        at has eius harum
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+
+        <div class="mx-4 flex items-center space-x-3">
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+            <p>Today</p>
+            <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        </div>
+
+        <div class="flex items-start space-x-2.5 sm:space-x-5">
+            <div class="avatar">
+                <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+            </div>
+
+            <div class="flex flex-col items-start space-y-3.5">
+                <div class="mr-4 max-w-lg sm:mr-10">
+                    <div class="rounded-2xl rounded-tl-none bg-white p-3 text-slate-700 shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                        Recusabo mandamus cum ex, ius unum nibh an, usu liber oratio
+                        liberavisse ea.
+                    </div>
+                    <p class="ml-auto mt-1 text-right text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-start justify-end space-x-2.5 sm:space-x-5">
+            <div class="flex flex-col items-end space-y-3.5">
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Ocurreret rationibus intellegebat eu eos,
+                    </div>
+                </div>
+                <div class="ml-4 max-w-lg sm:ml-10">
+                    <div class="rounded-2xl rounded-tr-none bg-info/10 p-3 text-slate-700 shadow-sm dark:bg-accent dark:text-white">
+                        Veri dolorum cu ius. Vim id nullam putent invidunt.
+                    </div>
+                    <p class="ml-auto mt-1 text-left text-xs text-slate-400 dark:text-navy-300">
+                        08:16
+                    </p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img class="rounded-full" src="images/app/avatar-12.jpg" alt="avatar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chat-footer relative flex h-12 w-full shrink-0 items-center justify-between border-t border-slate-150 bg-white px-[calc(var(--margin-x)-.25rem)] transition-[padding,width] duration-[.25s] dark:border-navy-600 dark:bg-navy-800">
+    <div class="-ml-1.5 flex flex-1 space-x-2">
+        <button class="btn h-9 w-9 shrink-0 rounded-full p-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+            </svg>
+        </button>
+
+        <input type="text" class="form-input h-9 w-full bg-transparent placeholder:text-slate-400/70" placeholder="Write the message" />
+    </div>
+
+    <div class="-mr-1.5 flex">
+        <button class="btn h-9 w-9 shrink-0 rounded-full p-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+        <button class="btn h-9 w-9 shrink-0 rounded-full p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9.813 5.146 9.027 3.99c4.05 1.79 4.05 4.718 0 6.508l-9.027 3.99c-6.074 2.686-8.553.485-5.515-4.876l.917-1.613c.232-.41.232-1.09 0-1.5l-.917-1.623C1.26 4.66 3.749 2.46 9.813 5.146ZM6.094 12.389h7.341" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<template x-teleport="#x-teleport-target"  >
+    <div x-data=" { get showDrawer() {return $data.isShowChatInfo;}, set showDrawer(val) {$data.isShowChatInfo=val;}, }" x-show="showDrawer" @keydown.window.escape="showDrawer = false">
+        <div class="fixed inset-0 z-[100] bg-slate-900/60 transition-opacity duration-200" @click="showDrawer = false" x-show="showDrawer && $store.breakpoints.mdAndDown" x-transition:enter="ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"></div>
+        <div class="fixed right-0 top-0 z-[101] h-full w-full sm:w-80">
+            <div class="flex h-full w-full flex-col border-l border-slate-150 bg-white transition-transform duration-200 dark:border-navy-600 dark:bg-navy-750" x-show="showDrawer" x-transition:enter="ease-out transform-gpu" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="ease-in transform-gpu" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+                <div class="flex h-[60px] items-center justify-between p-4">
+                    <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
+                        Chat Info
+                    </h3>
+                    <div class="-mr-1.5 flex space-x-1">
+                        <button @click="$store.global.isRightSidebarExpanded = true" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5 text-slate-500 dark:text-navy-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg>
+                        </button>
+
+                        <button @click="$store.global.isDarkModeEnabled = !$store.global.isDarkModeEnabled" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg x-show="$store.global.isDarkModeEnabled" x-transition:enter="transition-transform duration-200 ease-out absolute origin-top" x-transition:enter-start="scale-75" x-transition:enter-end="scale-100 static" class="h-6 w-6 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M11.75 3.412a.818.818 0 01-.07.917 6.332 6.332 0 00-1.4 3.971c0 3.564 2.98 6.494 6.706 6.494a6.86 6.86 0 002.856-.617.818.818 0 011.1 1.047C19.593 18.614 16.218 21 12.283 21 7.18 21 3 16.973 3 11.956c0-4.563 3.46-8.31 7.925-8.948a.818.818 0 01.826.404z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" x-show="!$store.global.isDarkModeEnabled" x-transition:enter="transition-transform duration-200 ease-out absolute origin-top" x-transition:enter-start="scale-75" x-transition:enter-end="scale-100 static" class="h-6 w-6 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <button @click="showDrawer=false" class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-5 flex flex-col items-center">
+                    <div class="avatar h-20 w-20">
+                        <img class="rounded-full" src="null" :src="activeChat.avatar_url" alt="avatar" />
+                    </div>
+                    <h3 x-text="activeChat.name" class="mt-2 text-lg font-medium text-slate-700 dark:text-navy-100"></h3>
+                    <p>Frontend Developer</p>
+                    <div class="mt-2 flex space-x-1.5">
+                        <button class="btn h-10 w-10 rounded-full p-0 text-slate-600 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </button>
+                        <button class="btn h-10 w-10 rounded-full p-0 text-slate-600 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                        </button>
+                        <button class="btn h-10 w-10 rounded-full p-0 text-slate-600 hover:bg-slate-300/20 hover:text-primary focus:bg-slate-300/20 focus:text-primary active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:hover:text-accent dark:focus:bg-navy-300/20 dark:focus:text-accent dark:active:bg-navy-300/25">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div x-data="{activeTab:'tabImages'}" class="tabs mt-6 flex flex-col">
+                    <div class="is-scrollbar-hidden overflow-x-auto px-4">
+                        <div class="tabs-list flex">
+                            <button @click="activeTab = 'tabImages'" :class="activeTab === 'tabImages' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'" class="btn shrink-0 rounded-none border-b-2 px-3 py-2 font-medium">
+                                Images
+                            </button>
+                            <button @click="activeTab = 'tabFiles'" :class="activeTab === 'tabFiles' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'" class="btn shrink-0 rounded-none border-b-2 px-3 py-2 font-medium">
+                                Files
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-content px-4 pt-4 ">
+                        <div x-show="activeTab === 'tabImages'" x-transition:enter="transition-all duration-500 easy-in-out" x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]" x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]">
+                            <div class="grid grid-cols-4 gap-2">
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-1.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-2.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-3.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/food-4.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-5.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-6.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/food-7.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-8.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/food-9.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/food-11.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-18.jpg" alt="image" />
+                                <img class="aspect-square rounded-lg object-cover object-center" src="images/object/object-9.jpg" alt="image" />
+
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                                <button class="aspect-square rounded-lg flex items-center justify-center bg-slate-200 dark:bg-navy-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-400 dark:text-navy-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div x-show="activeTab === 'tabFiles'" x-transition:enter="transition-all duration-500 easy-in-out" x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]" x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]">
+                            <div class="flex flex-col space-y-3.5">
+                                <div class="flex items-center space-x-3">
+                                    <div class="mask is-squircle flex h-11 w-11 items-center justify-center bg-secondary text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-700 dark:text-navy-100">
+                                            Slow Music
+                                        </p>
+                                        <div class="flex text-xs text-slate-400 dark:text-navy-300">
+                                            <span>03:12</span>
+                                            <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+
+                                            <span>8.32 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="mask is-squircle flex h-11 w-11 items-center justify-center bg-info text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-700 dark:text-navy-100">
+                                            Final.fig
+                                        </p>
+                                        <div class="flex text-xs text-slate-400 dark:text-navy-300">
+                                            <span>45 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="mask is-squircle flex h-11 w-11 items-center justify-center bg-warning text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-700 dark:text-navy-100">
+                                            Report.docx
+                                        </p>
+                                        <div class="flex text-xs text-slate-400 dark:text-navy-300">
+                                            <span>3.5 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <div class="mask is-squircle flex h-11 w-11 items-center justify-center bg-success text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-slate-700 dark:text-navy-100">
+                                            TheBook.pdf
+                                        </p>
+                                        <div class="flex text-xs text-slate-400 dark:text-navy-300">
+                                            <span>14 MB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<?php $this->endSection() ?>
